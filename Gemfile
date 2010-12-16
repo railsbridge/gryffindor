@@ -6,6 +6,9 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'devise'
+
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,3 +32,14 @@ gem 'mysql2'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+group :development, :test do
+  gem "rspec", ">=2.1.0"
+  gem "rspec-rails", ">=2.1.0"
+  gem "shoulda", ">=2.11.3"
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  gem "haml-rails"
+end
