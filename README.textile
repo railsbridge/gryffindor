@@ -4,7 +4,8 @@ A sorting hat for the workshops, project gryffindor will serve as an organizing 
 
 h2. Project Logistics
 
-"Pivotal Tracker Project":https://www.pivotaltracker.com/projects/169545
+* "Pivotal Tracker Project":https://www.pivotaltracker.com/projects/169545
+*  questions should go to "Workshop Organizers Email Group":http://groups.google.com/group/railsbridge-organizers
 
 h2. Stuff We Expect to Use 
 
