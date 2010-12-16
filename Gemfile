@@ -39,6 +39,13 @@ group :development, :test do
   gem "rspec-rails", ">=2.1.0"
   gem "shoulda", ">=2.11.3"
   gem 'factory_girl_rails'
+
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'spork'
+  gem 'launchy'    # So you can do Then show me the page
 end
 
 group :development do
