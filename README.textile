@@ -1,11 +1,13 @@
-== Project Gryffindor ==
+h2. Project Gryffindor
 
 A sorting hat for the workshops, project gryffindor will serve as an organizing tool to register and group participants and figure out if we have enough volunteers.
 
-== Project Stuff ==
-* "Pivotal Tracker Project":https://www.pivotaltracker.com/projects/169545
+h2. Project Logistics
 
-== Stuff We Expect to Use ==
+* "Pivotal Tracker Project":https://www.pivotaltracker.com/projects/169545
+*  questions should go to "Workshop Organizers Email Group":http://groups.google.com/group/railsbridge-organizers
+
+h2. Stuff We Expect to Use 
 
 * Ruby 1.9.2
 * Rails 3
