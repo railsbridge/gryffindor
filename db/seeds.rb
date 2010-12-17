@@ -8,6 +8,5 @@
 
 # Roles
 Role.create( :name => 'participant' )
-Role.create( :name => 'TA' )
-Role.create( :name => 'teacher' )
+Role.create( :name => 'volunteer' )
 Role.create( :name => 'organizer' )
