@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   before_save { |u| u.email.downcase! }
   
   has_and_belongs_to_many :roles
+
+  def add_role(name)
+    self.roles << Role.find_by_name!(name.to_s)
+  end
+
+  def role?(name)
+    roles.map(&:name).include? name.to_s
+  end
 end

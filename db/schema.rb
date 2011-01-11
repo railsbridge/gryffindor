@@ -13,9 +13,7 @@
 ActiveRecord::Schema.define(:version => 20101217071611) do
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", :null => false
   end
 
   create_table "roles_users", :id => false, :force => true do |t|

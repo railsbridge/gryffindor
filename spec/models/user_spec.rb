@@ -1,11 +1,35 @@
 require 'spec_helper'
 
 describe User do
-  # it would be nice if devise provided some shared examples to verify that the modules you're intrested in were included, but their preferred method of testing is pure integration
-
   describe "saving" do
-    it "dowcases the email address" do
-      User.create!(:email => "ALLCAPS@EXAMPLE.COM", :password => "password").reload.email.should == "allcaps@example.com"
+    it "downcases the email address" do
+      Factory(:user, :email => "ALLCAPS@EXAMPLE.COM").reload.email.should == "allcaps@example.com"
+    end
+  end
+
+  describe 'a new user' do
+    it 'has no roles' do
+      Factory(:user).should have(0).roles
+    end
+  end
+
+  describe '#role?' do
+    it 'checks for role membership by name' do
+      organizer = Factory(:organizer)
+      organizer.role?(:organizer).should be_true
+      organizer.role?(:admin).should be_false
+    end
+  end
+
+  describe '#add_role' do
+    it 'adds a role' do
+      user, role = Factory(:user), Factory(:admin_role)
+      user.add_role(role.name)
+      user.roles.should eq [role]
+    end
+
+    it 'raises an exception for nonexistent roles' do
+      proc { Factory(:user).add_role('boss') }.should raise_error ActiveRecord::RecordNotFound
     end
   end
 end

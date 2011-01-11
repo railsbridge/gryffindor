@@ -1,9 +1,7 @@
 class CreateRoles < ActiveRecord::Migration
   def self.up
     create_table :roles do |t|
-      t.string :name
-
-      t.timestamps
+      t.string :name, :null => false
     end
   end
 
