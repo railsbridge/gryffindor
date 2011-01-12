@@ -1,4 +1,5 @@
 Factory.define :user do |u|
+  u.name 'Sample User'
   u.email {Factory.next(:email)}
   u.password { "password" }
   u.password_confirmation { "password" }

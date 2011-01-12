@@ -12,7 +12,9 @@
           = link_to 'Railsbridge', root_url
         #login
           - if user_signed_in?
-            = "Signed in as #{current_user.email}."
+            Signed in as
+            = link_to current_user.email, '/users/edit'
+            %br
             = link_to 'Sign out', destroy_user_session_path
           - else
             = link_to 'Sign in', new_user_session_path
@@ -26,6 +28,12 @@
           %li Search
           %li Search
           %li Preferences
+
+      #flash
+        %p.notice
+          = notice
+        %p.alert
+          = alert
 
       = yield
       #footer

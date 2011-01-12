@@ -5,6 +5,12 @@ describe User do
     it "downcases the email address" do
       Factory(:user, :email => "ALLCAPS@EXAMPLE.COM").reload.email.should == "allcaps@example.com"
     end
+
+    it 'requires name and email' do
+      Factory(:user).should be_valid
+      Factory.build(:user, :name => nil).should_not be_valid
+      Factory.build(:user, :email => nil).should_not be_valid
+    end
   end
 
   describe 'a new user' do

@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :female_identification
+
+  has_and_belongs_to_many :roles
 
   before_save { |u| u.email.downcase! }
-  
-  has_and_belongs_to_many :roles
+  validates_uniqueness_of :email
+  validates_presence_of :name
 
   def add_role(name)
     self.roles << Role.find_by_name!(name.to_s)
