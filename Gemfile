@@ -7,7 +7,7 @@ gem 'rails', '3.0.3'
 
 gem 'mysql2'
 gem 'devise'
-gem 'cancan'
+gem 'cancan', '~> 1.5.0'
 
 gem 'haml'
 

@@ -9,7 +9,7 @@
     #container
       #header
         #logo
-          Railsbridge
+          = link_to 'Railsbridge', root_url
         #login
           - if user_signed_in?
             = "Signed in as #{current_user.email}."
@@ -20,7 +20,7 @@
             = link_to 'Sign up', new_user_registration_path
 
         %ul.navigation
-          %li Search
+          %li= link_to 'Locations', locations_path
           %li Search
           %li Search
           %li Search

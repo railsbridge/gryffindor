@@ -1,0 +1,18 @@
+= form_for @location do |f|
+  -if @location.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@location.errors.count, "error")} prohibited this location from being saved:"
+      %ul
+        - @location.errors.full_messages.each do |msg|
+          %li= msg
+
+  %p Include contact people, venue capacity, and other info in the notes.
+
+  .field
+    = f.label :address
+    = f.text_field :address
+  .field
+    = f.label :notes
+    = f.text_area :notes
+  .actions
+    = f.submit 'Save'

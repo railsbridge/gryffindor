@@ -1,0 +1,25 @@
+%h1 Locations
+
+%table
+  %tr
+    %th Address
+    %th
+    %th
+    %th
+
+  - @locations.each do |location|
+    %tr
+      %td= location.address
+      %td
+        - if can? :view, Location
+          = link_to 'Show', location
+      %td
+        - if can? :update, Location
+          = link_to 'Edit', edit_location_path(location)
+      %td
+        - if can? :delete, Location
+          = button_to 'Destroy', location, :method => :delete
+
+- if can? :create, Location
+  %br
+  = link_to 'New Location', new_location_path
