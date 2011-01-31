@@ -7,6 +7,5 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 # Roles
-Role.create( :name => 'participant' )
-Role.create( :name => 'volunteer' )
+Role.create( :name => 'admin' )
 Role.create( :name => 'organizer' )
