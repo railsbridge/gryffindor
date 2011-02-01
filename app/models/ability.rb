@@ -7,7 +7,7 @@ class Ability
     if user.role? :admin
       can :manage, :all
     elsif user.role? :organizer
-      can :manage, [Location]
+      can :manage, [Location, Event]
     end
   end
 end

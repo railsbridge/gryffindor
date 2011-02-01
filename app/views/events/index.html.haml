@@ -1,0 +1,33 @@
+%h1 Events
+
+%table
+  %tr
+    %th Starts At
+    %th Ends At
+    %th Location
+    %th Name
+    %th Notes
+    %th
+    %th
+    %th
+
+  - @events.each do |event|
+    %tr
+      %td= event.start_time
+      %td= event.end_time
+      %td= event.location.address
+      %td= event.name
+      %td= event.notes
+      %td
+        - if can? :view, Event
+          = link_to 'Show', event
+      %td
+        - if can? :update, Event
+          = link_to 'Edit', edit_event_path(event)
+      %td
+        - if can? :delete, Event
+          = button_to 'Destroy', event, :method => :delete
+
+- if can? :create, Event
+  %br
+  = link_to 'New Event', new_event_path

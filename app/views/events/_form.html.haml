@@ -1,0 +1,27 @@
+= form_for @event do |f|
+  -if @event.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      %ul
+        - @event.errors.full_messages.each do |msg|
+          %li= msg
+
+  %p Include contact people, venue capacity, and other info in the notes.
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :location_id
+    = f.select :location_id, options_from_collection_for_select(@locations, 'id', 'address')
+  .field
+    = f.label :notes
+    = f.text_area :notes
+  .field
+    = f.label :start_time
+    = f.datetime_select :start_time
+  .field
+    = f.label :end_time
+    = f.datetime_select :end_time
+  .actions
+    = f.submit 'Save'

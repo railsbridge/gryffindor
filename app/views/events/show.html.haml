@@ -1,0 +1,18 @@
+%h1= @event.name
+
+%p
+  %b Address:
+  = @event.location.address
+%p
+  %b Starts at:
+  = @event.start_time.strftime("%b %e at %r")
+%p
+  %b Ends at:
+  = @event.end_time.strftime("%b %e at %r")
+%p
+  %b Notes:
+  = @event.notes
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
