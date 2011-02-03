@@ -3,15 +3,16 @@
   %head
     %title Gryffindor
     = stylesheet_link_tag :all
-    = javascript_include_tag :defaults
     = javascript_include_tag 'jquery-1.4.4.min.js'
     = javascript_include_tag 'jquery-ui-1.8.9.min.js'
+    = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
+    = render :partial => 'layouts/menu_bar'
     #container
       #header
         #logo
-          = link_to 'Railsbridge', root_url
+          = link_to 'Railsbridge Events!', root_url
         #login
           - if user_signed_in?
             Signed in as
