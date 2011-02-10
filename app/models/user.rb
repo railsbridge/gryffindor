@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
+  has_many :registrations
+  has_many :events, :through => :registrations
+
   before_save { |u| u.email.downcase! }
   validates_uniqueness_of :email
   validates_presence_of :name

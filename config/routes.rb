@@ -1,5 +1,7 @@
 Gryffindor::Application.routes.draw do
-  resources :events
+  resources :events do
+    resources :registrations
+  end
 
   devise_for :users
   resources :locations

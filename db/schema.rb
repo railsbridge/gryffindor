@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131080848) do
+ActiveRecord::Schema.define(:version => 20110210033218) do
 
   create_table "events", :force => true do |t|
     t.string   "name",        :null => false
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(:version => 20110131080848) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "registrations", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "event_id",   :null => false
+    t.boolean  "waitlisted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "registrations", ["event_id"], :name => "index_registrations_on_event_id"
+  add_index "registrations", ["user_id", "event_id"], :name => "index_registrations_on_user_id_and_event_id", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string "name", :null => false
