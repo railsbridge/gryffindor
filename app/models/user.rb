@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :name
 
+  has_one :user_profile
+
   def add_role(name)
     self.roles << Role.find_by_name!(name.to_s)
   end
