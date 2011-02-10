@@ -10,7 +10,6 @@ gem 'haml'
 group :development do
   gem 'haml-rails'
   gem 'mongrel', '>= 1.2.0.pre2'
-  gem 'ruby-debug19'
 end
 
 group :development, :test do
