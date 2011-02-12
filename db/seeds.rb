@@ -9,3 +9,11 @@
 # Roles
 Role.create( :name => 'admin' )
 Role.create( :name => 'organizer' )
+
+# Questions - Example data
+Question.create({:question_text => "Do you know what a variable is?", :type => "TextArea"})
+Question.create({:question_text => "Have you used the command line?", :type => "Radio"})
+Question.create({:question_text => "I can name 5 UNIX commands.", :type => "CheckBox"})
+Question.create({:question_text => "How did you hear about this group?", :type => "Select"})
+Question.create({:question_text => "What do you want to learn from this workshop?", :type => "TextArea"})
+
