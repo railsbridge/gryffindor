@@ -54,28 +54,21 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  # PUT /registrations/1
-  # PUT /registrations/1.xml
   def update
     @registration = Registration.find(params[:id])
 
-    if @registration.user == current_user && params[:withdraw] == 'true'
+    redirect_to(@event, :notice => 'Unsupported behavior')
+  end
+
+  def destroy
+    @registration = Registration.find(params[:id])
+
+    if @registration.user == current_user
+      # don't actually destroy it, for record-keeping; instead, set withdrawn_at
       @registration.withdraw!
       redirect_to(@event, :notice => "Registration was withdrawn")
     else
-      redirect_to(@event, :notice => 'Unsupported behavior')
-    end
-  end
-
-  # DELETE /registrations/1
-  # DELETE /registrations/1.xml
-  def destroy
-    @registration = Registration.find(params[:id])
-    @registration.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(registrations_url) }
-      format.xml  { head :ok }
+      redirect_to(@event, :error => "You don't have permission to do that.")
     end
   end
 

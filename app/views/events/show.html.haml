@@ -23,8 +23,8 @@
   %p
     - if @current_user.registered_for?(@event)
       You are registered for this event.
-      = form_for([@event, @current_user.registration_for(@event)]) do |f|
-        = hidden_field_tag :withdraw, true
+
+      = form_for([@event, @current_user.registration_for(@event)], :html => { :method => 'delete' }) do |f|
         .actions
           = f.submit 'Withdraw registration'
     - else

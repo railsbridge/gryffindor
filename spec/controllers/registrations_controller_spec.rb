@@ -23,17 +23,39 @@ describe RegistrationsController do
   end
 
   describe "create" do
-    it "should redirect to registration page" do
+    it "should redirect to event page" do
       post :create, :event_id => @event.id, :registration => {}
       response.should redirect_to(event_path(@event))
     end
 
     it "should save a new registration for the current user" do
       post :create, :event_id => @event.id, :registration => {}
-      registration = Registration.last
-      registration.user.should == @user
+      Registration.last.user.should == @user
+    end
+  end
+
+  describe "destroy" do
+
+    before do
+      @registration = Factory(:registration, :event => @event, :user => @user)
     end
 
+    it "should withdraw the registration if the registration belongs to current user" do
+      delete :destroy, :event_id => @event.id, :id => @registration.id
+      @registration.reload.should be_withdrawn
+    end
+
+    it "should not withdraw the registration if the registration does not belong to current user" do
+      other_registration = Factory(:registration, :event => @event, :user_id => (@user.id + 1))
+
+      delete :destroy, :event_id => @event.id, :id => other_registration.id
+      other_registration.reload.should_not be_withdrawn
+    end
+
+    it "should redirect to the event page" do
+      delete :destroy, :event_id => @event.id, :id => @registration.id
+      response.should redirect_to(@event)
+    end
 
   end
 
