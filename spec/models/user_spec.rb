@@ -39,13 +39,20 @@ describe User do
     end
   end
 
-  it "knows if it is registered for an event" do
-    user = Factory(:user)
+  describe "#registered_for?" do
+    before do
+      @user = Factory(:user)
+      @event = Factory(:event)
+    end
 
-    event = Factory(:event)
-    user.registered_for?(event).should be_false
+    it "returns false if the user is not registered for event" do
+      @user.registered_for?(@event).should be_false
+    end
 
-    Factory(:registration, :event => event, :user => user)
-    user.registered_for?(event).should be_true
+    it "returns true if the user is registered for event" do
+      Factory(:registration, :event => @event, :user => @user)
+      @user.registrations.reload
+      @user.registered_for?(@event).should be_true
+    end
   end
 end
