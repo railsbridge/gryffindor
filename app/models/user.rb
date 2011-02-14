@@ -23,4 +23,12 @@ class User < ActiveRecord::Base
   def role?(name)
     roles.map(&:name).include? name.to_s
   end
+
+  def registered_for?(event)
+    registrations.active.map(&:event_id).include? event.id
+  end
+
+  def registration_for(event)
+    registrations.active.select {|reg| reg.event_id == event.id}.first
+  end
 end

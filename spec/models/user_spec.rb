@@ -38,4 +38,14 @@ describe User do
       proc { Factory(:user).add_role('boss') }.should raise_error ActiveRecord::RecordNotFound
     end
   end
+
+  it "knows if it is registered for an event" do
+    user = Factory(:user)
+
+    event = Factory(:event)
+    user.registered_for?(event).should be_false
+
+    Factory(:registration, :event => event, :user => user)
+    user.registered_for?(event).should be_true
+  end
 end

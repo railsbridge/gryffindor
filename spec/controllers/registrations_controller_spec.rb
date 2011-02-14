@@ -25,7 +25,7 @@ describe RegistrationsController do
   describe "create" do
     it "should redirect to registration page" do
       post :create, :event_id => @event.id, :registration => {}
-      response.should redirect_to(event_registration_path(@event, Registration.last))
+      response.should redirect_to(event_path(@event))
     end
 
     it "should save a new registration for the current user" do

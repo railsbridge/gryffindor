@@ -47,14 +47,10 @@ class RegistrationsController < ApplicationController
     @registration.user = current_user
     @registration.event = @event
 
-    respond_to do |format|
-      if @registration.save
-        format.html { redirect_to([@event, @registration], :notice => 'Registration was successfully created.') }
-        format.xml  { render :xml => @registration, :status => :created, :location => @registration }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @registration.errors, :status => :unprocessable_entity }
-      end
+    if @registration.save
+      redirect_to(@event, :notice => 'Registration was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
@@ -63,14 +59,11 @@ class RegistrationsController < ApplicationController
   def update
     @registration = Registration.find(params[:id])
 
-    respond_to do |format|
-      if @registration.update_attributes(params[:registration])
-        format.html { redirect_to(@registration, :notice => 'Registration was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @registration.errors, :status => :unprocessable_entity }
-      end
+    if @registration.user == current_user && params[:withdraw] == 'true'
+      @registration.withdraw!
+      redirect_to(@event, :notice => "Registration was withdrawn")
+    else
+      redirect_to(@event, :notice => 'Unsupported behavior')
     end
   end
 
