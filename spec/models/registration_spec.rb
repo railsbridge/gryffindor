@@ -25,6 +25,24 @@ describe Registration do
     Factory.build(:registration, :user => @user, :event => @event).should be_valid
   end
 
+  describe "setting its waitlisted status" do
+    before do
+      @event.capacity = 1
+      @event.save
+    end
+
+    it "sets waitlisted to false if event is not full" do
+      registration = Factory(:registration, :user => @user, :event => @event)
+      registration.should_not be_waitlisted
+    end
+
+    it "sets waitlisted to true if event is full" do
+      Factory(:registration, :event => @event)
+      registration = Factory(:registration, :user => @user, :event => @event)
+      registration.should be_waitlisted
+    end
+  end
+
   describe "updating associated Event" do
 
     it "should increment event.active_registrations_count when new registration is created" do

@@ -7,6 +7,10 @@ class Event < ActiveRecord::Base
 
   validate :capacity_is_a_positive_number
 
+  def full?
+    active_registrations_count >= capacity
+  end
+
   private
 
   def capacity_is_a_positive_number

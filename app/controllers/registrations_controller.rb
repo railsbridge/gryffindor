@@ -48,7 +48,12 @@ class RegistrationsController < ApplicationController
     @registration.event = @event
 
     if @registration.save
-      redirect_to(@event, :notice => 'Registration was successfully created.')
+      if !@registration.waitlisted?
+        notice = "Success! You have registered for this event."
+      else
+        notice = "You have registered for this event, but you are on the waitlist."
+      end
+      redirect_to(@event, :notice => notice)
     else
       render :action => "new"
     end

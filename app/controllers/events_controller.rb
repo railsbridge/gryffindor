@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find params[:id]
+    @event = Event.find params[:id], :include => { :registrations => :user } # doesn't seem to actually solve n+1 due to scopes
   end
 
 

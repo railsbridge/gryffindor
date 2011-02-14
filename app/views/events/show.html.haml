@@ -18,6 +18,14 @@
 %div
   %p This event has a capacity of #{@event.capacity}.
   %p Currently, #{@event.active_registrations_count} people have registered.
+  %p Attending:
+  %ol
+    - @event.registrations.attending.each do |reg|
+      %li= reg.user.name
+  %p Waitlisted:
+  %ol
+    - @event.registrations.waitlisted.each do |reg|
+      %li= reg.user.name
 
 - if @current_user
   %p
