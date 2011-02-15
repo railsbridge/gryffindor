@@ -3,6 +3,14 @@
 %p
   %b User:
   = @registration.user_id
+
+%p
+  %h2 Questions
+  %p
+    Please complete these questions so you may be registered.
+  %ul
+    - @registration.event.questions.each do |q|
+      = q.question_text
 %p
   %b Event:
   = @registration.event_id
