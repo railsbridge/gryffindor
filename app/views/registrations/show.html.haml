@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @registration.user_id
+%p
+  %b Event:
+  = @registration.event_id
+
+= link_to 'Edit', edit_event_registration_path(@event, @registration)
+\|
+= link_to 'Back', event_registrations_path

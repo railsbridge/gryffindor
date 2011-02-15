@@ -13,6 +13,32 @@
   %b Notes:
   = @event.notes
 
+%hr
+
+%div
+  %p This event has a capacity of #{@event.capacity}.
+  %p Currently, #{@event.active_registrations_count} people have registered.
+  %p Attending:
+  %ol
+    - @event.registrations.attending.each do |reg|
+      %li= reg.user.name
+  %p Waitlisted:
+  %ol
+    - @event.registrations.waitlisted.each do |reg|
+      %li= reg.user.name
+
+- if @current_user
+  %p
+    - if @current_user.registered_for?(@event)
+      You are registered for this event.
+
+      = form_for([@event, @current_user.registration_for(@event)], :html => { :method => 'delete' }) do |f|
+        .actions
+          = f.submit 'Withdraw registration'
+    - else
+      You are not registered for this event.
+      = link_to 'Register', new_event_registration_path(@event)
+
 = link_to 'Edit', edit_event_path(@event)
 \|
 = link_to 'Back', events_path

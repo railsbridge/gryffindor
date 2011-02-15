@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
+  has_many :registrations
+  has_many :events, :through => :registrations
+
   before_save { |u| u.email.downcase! }
   validates_uniqueness_of :email
   validates_presence_of :name
@@ -21,5 +24,13 @@ class User < ActiveRecord::Base
 
   def role?(name)
     roles.map(&:name).include? name.to_s
+  end
+
+  def registered_for?(event)
+    registrations.active.map(&:event_id).include? event.id
+  end
+
+  def registration_for(event)
+    registrations.active.select {|reg| reg.event_id == event.id}.first
   end
 end
