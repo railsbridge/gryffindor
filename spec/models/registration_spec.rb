@@ -64,7 +64,6 @@ describe Registration do
     it "should not validate with unanswered questions by a user" do
       registration = Factory.build(:registration, :user => @user, :event => @event)
       @question = Factory(:question, :event => @event)
-      Factory(:answer, :question => @question, :user => nil)
       
       registration.should_not be_valid
     end
