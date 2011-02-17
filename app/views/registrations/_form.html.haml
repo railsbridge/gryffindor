@@ -5,6 +5,13 @@
       %ul
         - @registration.errors.full_messages.each do |msg|
           %li= msg
+  %p
+    %h2 Questions
+    %p
+      Please complete these questions so you may be registered.
+    %ul
+      - @event.questions.each do |q|
+        = q.question_text
 
   .actions
     = f.submit 'Save'
