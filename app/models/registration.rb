@@ -41,4 +41,10 @@ class Registration < ActiveRecord::Base
     event.save
   end
 
+  def validate_answers_to_questions
+    event.questions.each do |question|
+      question.answers.where({:user_id => current_user.id})
+    end
+  end
+
 end
