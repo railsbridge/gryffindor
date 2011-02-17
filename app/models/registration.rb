@@ -44,8 +44,8 @@ class Registration < ActiveRecord::Base
   end
 
   def validate_answers_to_questions
-    event.questions.each do |question|
-      question.answers.where({:user_id => current_user.id})
+    event.questions.all? do |question|
+      errors.add(:base, "All questions must be answered for this registration") if event.questions.first.answers.where({:user_id => user.id}).empty?
     end
   end
 
