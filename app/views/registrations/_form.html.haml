@@ -9,11 +9,13 @@
     %h2 Questions
     %p
       Please complete these questions so you may be registered.
-    %ul
+
       - @event.questions.each do |question|
-        = question.question_text
-        - f.fields_for :answers do |g|
+        = question.question_text 
+        %br
+        = f.fields_for :answers, Answer.new do |g|
           = g.text_field :answer_text
+          %br
 
   .actions
     = f.submit 'Save'

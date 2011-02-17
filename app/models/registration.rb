@@ -3,6 +3,9 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
 
+  has_many :answers
+  accepts_nested_attributes_for :answers
+
   scope :attending, :conditions => ["withdrawn_at IS NULL AND waitlisted = ?", false]
   scope :active, :conditions => ["withdrawn_at IS NULL", false]
   scope :withdrawn, :conditions => ["withdrawn_at IS NOT NULL"]
