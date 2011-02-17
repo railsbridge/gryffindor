@@ -13,7 +13,6 @@ class Registration < ActiveRecord::Base
 
 
   validate :validate_uniqueness_of_active_registration
-  validate :validate_answers_to_questions
 
   before_create :sets_waitlisted
   after_save :update_event_active_registrations_count
@@ -45,11 +44,4 @@ class Registration < ActiveRecord::Base
     event.active_registrations_count = Registration.active.count
     event.save
   end
-
-  def validate_answers_to_questions
-    event.questions.all? do |question|
-      errors.add(:base, "All questions must be answered for this registration") if event.questions.first.answers.where({:registration_id => self.id}).empty?
-    end
-  end
-
 end

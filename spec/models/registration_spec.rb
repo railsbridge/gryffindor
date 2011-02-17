@@ -59,14 +59,4 @@ describe Registration do
       @event.reload.active_registrations_count.should == 0
     end
   end
-
-  context "answering questions" do
-    it "should not validate with unanswered questions by a user" do
-      registration = Factory.build(:registration, :user => @user, :event => @event)
-      @question = Factory(:question, :event => @event)
-      
-      registration.should_not be_valid
-    end
-  end
-
 end
