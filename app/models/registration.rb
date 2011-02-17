@@ -10,6 +10,8 @@ class Registration < ActiveRecord::Base
 
 
   validate :validate_uniqueness_of_active_registration
+  validate :validate_answers_to_questions
+
   before_create :sets_waitlisted
   after_save :update_event_active_registrations_count
 
