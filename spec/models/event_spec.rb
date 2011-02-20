@@ -30,7 +30,15 @@ describe Event do
       3.times { Factory(:registration, :event => @event) }
       @event.should be_full
     end
+  end
 
+  context "validation" do
+    it "should not be created with empty questions" do
+      @event = Factory.build(:event)
+      @question = Factory.build(:question, :event => @event, :question_text => nil)
+      
+      @event.should_not be_valid
+    end
   end
 
 end
