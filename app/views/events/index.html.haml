@@ -2,10 +2,10 @@
 
 %table
   %tr
+    %th Name
     %th Starts At
     %th Ends At
     %th Location
-    %th Name
     %th Notes
     %th
     %th
@@ -14,10 +14,10 @@
 
   - @events.each do |event|
     %tr
+      %td= event.name
       %td= event.start_time
       %td= event.end_time
       %td= event.location.address
-      %td= event.name
       %td= event.notes
       %td
         - if can? :view, Event
