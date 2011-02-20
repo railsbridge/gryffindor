@@ -33,12 +33,8 @@ describe Event do
   end
 
   context "validation" do
-    it "should not be created with empty questions" do
-      @event = Factory.build(:event)
-      @question = Factory.build(:question, :event => @event, :question_text => nil)
-      
-      @event.should_not be_valid
-    end
+    it "should not be valid without questions"
+    it "should not be created with empty questions"
   end
 
 end

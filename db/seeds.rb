@@ -16,3 +16,9 @@ Question.create({:question_text => "Have you used the command line?", :type => "
 Question.create({:question_text => "I can name 5 UNIX commands.", :type => "CheckBox"})
 Question.create({:question_text => "How did you hear about this group?", :type => "Select"})
 Question.create({:question_text => "What do you want to learn from this workshop?", :type => "TextArea"})
+
+# Admin
+User.create({:name => "admin", 
+              :email => "admin@littleseed.com", 
+              :password=>"admin", 
+              :password_confirmation => "admin"})

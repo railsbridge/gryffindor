@@ -3,8 +3,4 @@ class Question < ActiveRecord::Base
   belongs_to :event
 
   validates_presence_of :question_text
-
-  # TODO evaluate type and determine correct helper tag to use
-  def print_tag
-  end
 end
