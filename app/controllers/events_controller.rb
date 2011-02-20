@@ -11,6 +11,11 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @locations = Location.all
+
+    # events should always have at least 3 quesitons?
+    3.times do
+      @event.questions.build
+    end
   end
 
   def create

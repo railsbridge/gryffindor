@@ -23,5 +23,18 @@
   .field
     = f.label :end_time
     = f.datetime_select :end_time
+
+  %h2
+    Questions
+  = f.fields_for :questions, Question.new do |q|
+    .field
+      = g.label :question_text
+      = g.text_field :question_text
+    .field
+      = g.label :type
+      = g.text_field :type
+
+
+
   .actions
     = f.submit 'Save'

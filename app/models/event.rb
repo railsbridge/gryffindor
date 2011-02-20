@@ -1,10 +1,10 @@
 class Event < ActiveRecord::Base
 
   belongs_to :location
-  has_many :questions
   
-  # TODO allow nested attributes for dynamic creation
-
+  has_many :questions
+  accepts_nested_attributes_for :questions
+  
   has_many :registrations
   has_many :users, :through => :registrations
 
