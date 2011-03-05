@@ -33,12 +33,6 @@ describe RegistrationsController do
       Registration.last.user.should == @user
     end
 
-    it "should not save a new registration for the current user if they did not answer the questions" do
-      Factory.create(:question, :question_text => "can you pass this test?", :event_id => @event.id)
-      post :create, :event_id => @event.id, :registration => {}
-      response.should_not redirect_to(event_path(@event))
-    end
-
   end
 
   describe "destroy" do
@@ -63,7 +57,6 @@ describe RegistrationsController do
       delete :destroy, :event_id => @event.id, :id => @registration.id
       response.should redirect_to(@event)
     end
-
   end
 
 end
