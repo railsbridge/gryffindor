@@ -1,5 +1,4 @@
 module ApplicationHelper
-  def question_tag(question)
-    question.print_tag
+  def answer_tag(form, question_type)
   end
 end

@@ -1,0 +1,2 @@
+class SelectQuestion < Question
+end
