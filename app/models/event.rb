@@ -9,8 +9,6 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :registrations
 
   validate :capacity_is_a_positive_number
-  # validate :presence_of_questions
-  # validate :completeness_of_questions
 
   def full?
     active_registrations_count >= capacity
@@ -32,7 +30,4 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def presence_of_questions
-    errors.add(:base, "Event must have registration questions") unless (self.questions.empty? || self.questions.nil?)
-  end
 end

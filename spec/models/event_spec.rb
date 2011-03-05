@@ -32,9 +32,4 @@ describe Event do
     end
   end
 
-  context "validation" do
-    it "should not be valid without questions"
-    it "should not be created with empty questions"
-  end
-
 end
