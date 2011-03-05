@@ -34,10 +34,11 @@ describe RegistrationsController do
     end
 
     it "should not save a new registration for the current user if they did not answer the questions" do
-      @event.questions.push Factory(:question, :question_text => "can you pass this test?")
+      Factory.create(:question, :question_text => "can you pass this test?", :event_id => @event.id)
       post :create, :event_id => @event.id, :registration => {}
-      response.should_not be_success
+      response.should_not redirect_to(event_path(@event))
     end
+
   end
 
   describe "destroy" do
