@@ -7,8 +7,8 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 # Roles
-Role.create( :name => 'admin' )
-Role.create( :name => 'organizer' )
+admin = Role.create( :name => 'admin' )
+organizer = Role.create( :name => 'organizer' )
 
 # Questions - Example data
 Question.create({:question_text => "Do you know what a variable is?", :type => "TextArea"})
@@ -18,7 +18,8 @@ Question.create({:question_text => "How did you hear about this group?", :type =
 Question.create({:question_text => "What do you want to learn from this workshop?", :type => "TextArea"})
 
 # Admin
-User.create({:name => "admin", 
-              :email => "admin@littleseed.com", 
+admin_user = User.create({:name => "admin", 
+              :email => "admin@railsbridge.com", 
               :password=>"admin", 
-              :password_confirmation => "admin"})
+              :password_confirmation => "admin",
+              :role => admin})

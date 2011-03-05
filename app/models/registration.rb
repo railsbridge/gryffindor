@@ -26,7 +26,6 @@ class Registration < ActiveRecord::Base
     self.save
   end
 
-
   private
 
   def validate_uniqueness_of_active_registration
@@ -46,8 +45,7 @@ class Registration < ActiveRecord::Base
   end
 
   def validate_completeness_of_questions
-    event.questions.all? do |q|
-      !answers.where({:question_id => q.id}).empty?
-    end
+    complete = event.questions.collect.all? { |q| !q.answers.empty? }
+    errors.add(:base, "registration has incomplete answers") if !complete && !event.questions.empty?
   end
 end
