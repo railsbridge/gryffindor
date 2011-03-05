@@ -1,2 +1,0 @@
-class SelectQuestion < Question
-end

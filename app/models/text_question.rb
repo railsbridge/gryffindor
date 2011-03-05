@@ -1,2 +1,0 @@
-class TextQuestion < Question
-end
