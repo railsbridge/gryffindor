@@ -11,11 +11,12 @@ require 'selenium-webdriver'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/helpers/**/*.rb")].each {|f| require f}
 
 Capybara.configure do |config|
   config.default_driver = :selenium
   config.default_selector = :css
-  config.app_host = "localhost:8181"
+  config.app_host = "localhost:4000"
   config.server_port = 4000
 end
 
