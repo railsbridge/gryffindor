@@ -7,6 +7,8 @@ gem 'devise', '~> 1.1.5'
 gem 'cancan', '~> 1.5.0'
 gem 'haml'
 
+gem 'formtastic'
+
 group :development do
   gem 'haml-rails'
   gem 'mongrel', '>= 1.2.0.pre2'

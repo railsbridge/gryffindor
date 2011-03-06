@@ -14,7 +14,7 @@
         = question.question_text 
         %br
         = f.fields_for :answers, Answer.new do |g|
-          = g.text_field :answer_text
+          = g.input :answer_text, :as => question.type.downcase
           = g.hidden_field :question_id, :value => question.id
           %br
 
