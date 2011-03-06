@@ -18,7 +18,7 @@
           - if question.form_type == "text"
             = g.input :answer_text
           - else
-            = g.input :answer_text, :as => question.form_type, :options => question.options
+            = g.input :answer_text, :as => question.form_type, :collection => question.options
           = g.hidden_field :question_id, :value => question.id
           %br
 
