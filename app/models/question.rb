@@ -3,4 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :event
 
   validates_presence_of :question_text
+
+  def form_type
+    (self.class).to_s.slice(/(.)+(?=Question)/).downcase
+  end
 end

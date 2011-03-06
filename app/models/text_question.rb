@@ -1,0 +1,2 @@
+class TextQuestion < Question
+end

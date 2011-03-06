@@ -1,4 +1,4 @@
-= form_for([@event, @registration]) do |f|
+= semantic_form_for([@event, @registration]) do |f|
   -if @registration.errors.any?
     #error_explanation
       %h2= "#{pluralize(@registration.errors.count, "error")} prohibited this registration from being saved:"
@@ -10,14 +10,15 @@
     %p
       Please complete these questions so you may be registered.
 
-      - @event.questions.each do |question|
+      - Question.where({:event_id => @event.id}).each do |question|
         = question.question_text 
         %br
         = f.fields_for :answers, Answer.new do |g|
-          - if question.type == "Text"
-            = g.input :answer_text, :as => question.type.downcase
+          = question.form_type
+          - if question.form_type == "text"
+            = g.input :answer_text
           - else
-            = g.input :answer_text, :as => question.type.downcase, :collection => question.options
+            = g.input :answer_text, :as => question.form_type, :options => question.options
           = g.hidden_field :question_id, :value => question.id
           %br
 
