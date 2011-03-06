@@ -15,6 +15,9 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rspec'
   gem 'rspec-rails', '~> 2.4.1'
+  gem 'capybara'
+  gem 'faker'
   gem 'factory_girl_rails'
 end
