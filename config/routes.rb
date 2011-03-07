@@ -1,6 +1,10 @@
 Gryffindor::Application.routes.draw do
   resources :events do
-    resources :registrations
+    resources :registrations do
+      resources :answers
+    end
+
+    resources :questions
   end
 
   devise_for :users

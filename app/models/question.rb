@@ -12,4 +12,16 @@ class Question < ActiveRecord::Base
     self.question_text.split(":")[1].to_s.split(",")
   end
 
+ class << self
+    def new_with_cast(*a, &b)
+      if (h = a.first).is_a? Hash and (type = h[:type] || h['type']) and (klass = type.constantize) != self
+        raise "Unknown decendant type"  unless klass < self 
+        return klass.new(*a, &b)
+      end
+
+      new_without_cast(*a, &b)
+    end
+    alias_method_chain :new, :cast
+  end
+
 end

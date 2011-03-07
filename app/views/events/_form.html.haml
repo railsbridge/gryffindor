@@ -29,15 +29,13 @@
 
   %h2
     Questions
-  = f.fields_for :questions, Question.new do |g|
-    .field
-      = g.label :question_text
-      = g.text_field :question_text
-    .field
-      = g.label :type
-      = g.input :type, :as => :select, :collection => [TextQuestion, SelectQuestion, RadioQuestion, CheckBoxesQuestion] 
-
-
+    = f.fields_for :questions, @event.questions do |g|
+      .field
+        = g.label :question_text
+        = g.text_field :question_text
+      .field
+        = g.label :type
+        = g.input :type, :as => :select, :collection => [TextQuestion, RadioQuestion, SelectQuestion, CheckBoxesQuestion]
 
   .actions
     = f.submit 'Save'
