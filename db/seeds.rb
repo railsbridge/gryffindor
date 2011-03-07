@@ -10,6 +10,14 @@
 admin = Role.create( :name => 'admin' )
 organizer = Role.create( :name => 'organizer' )
 
+# Admin
+admin_user = User.create({:email => "admin@railsbridge.org",
+                           :name => "admin",
+                           :password => "password",
+                           :password_confirmation => "password"})
+
+admin_user.add_role("admin")
+
 #Location
 Factory(:location)
 

@@ -23,10 +23,13 @@
   .field
     = f.label :end_time
     = f.datetime_select :end_time
+  .field
+    = f.label :capacity
+    = f.text_field :capacity
 
   %h2
     Questions
-  = f.fields_for :questions, Question.new do |q|
+  = f.fields_for :questions, Question.new do |g|
     .field
       = g.label :question_text
       = g.text_field :question_text
