@@ -9,7 +9,9 @@ class Question < ActiveRecord::Base
   end
 
   def options
-    self.question_text.split(":")[1].to_s.split(",")
+    self.question_text.split(":")[1].to_s.split(",").collect! do |x|
+      x.strip!
+    end
   end
 
  class << self

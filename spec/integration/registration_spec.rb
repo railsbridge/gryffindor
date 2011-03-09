@@ -5,7 +5,7 @@ describe "Registering for an event" do
   include RegistrationHelper
 
   before :each do
-    @user = login_as_user
+    @user = login_as_admin
     @event = Factory(:event)
     click_link "Events"
   end
@@ -33,6 +33,14 @@ describe "Registering for an event" do
       Factory.create(:check_boxes_question, :event => @event)
       click_link "Register"
       page.find(:css, "input[type='checkbox']").should_not be_nil
+    end
+
+    it "should correctly register a user with their answers to custom questions" do
+      Factory.create(:select_question, :event => @event)
+      click_link "Register"
+      select "bar", :from => "registration[answers_attributes][0][answer_text]"
+      click_button "Save"
+      page.should have_content "Success!"
     end
   end
 end
