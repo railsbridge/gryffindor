@@ -38,7 +38,7 @@
         = g.label :type
         = g.input :type, :as => :select, :collection => [TextQuestion, RadioQuestion, SelectQuestion, CheckBoxesQuestion]
 
-  = link_to "Add Question", "#"  
+  = link_to "Add Question", "#", :id => "add_question"  
 
   .actions
     = f.submit 'Save'

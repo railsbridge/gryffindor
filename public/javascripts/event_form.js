@@ -5,6 +5,11 @@ var EventForm = (function(){
     initialize: function(selector) {
       this.element = $(selector);
       this.questions = this.element.find(".question_fieldset");
+      this.add_question_link = this.element.find("#add_question");
+
+      this.add_question_link.click(function(){
+        this.add_question_fields();
+      }.bind(this));
     },
 
     add_question_fields: function() {
