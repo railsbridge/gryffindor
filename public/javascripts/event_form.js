@@ -9,6 +9,6 @@ var EventForm = (function(){
   });
 
   $(function(){
-    $("#event_form").event_form();
+    $("#new_event").event_form();
   });
 })();
