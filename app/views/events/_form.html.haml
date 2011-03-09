@@ -30,12 +30,13 @@
   %h2
     Questions
   = f.fields_for :questions, @event.questions do |g|
-    .field
-      = g.label :question_text
-      = g.text_field :question_text
-    .field
-      = g.label :type
-      = g.input :type, :as => :select, :collection => [TextQuestion, RadioQuestion, SelectQuestion, CheckBoxesQuestion]
+    .question_fieldset
+      .field
+        = g.label :question_text
+        = g.text_field :question_text
+      .field
+        = g.label :type
+        = g.input :type, :as => :select, :collection => [TextQuestion, RadioQuestion, SelectQuestion, CheckBoxesQuestion]
 
   = link_to "Add Question", "#"  
 
