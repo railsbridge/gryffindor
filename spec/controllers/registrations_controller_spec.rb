@@ -32,6 +32,20 @@ describe RegistrationsController do
       post :create, :event_id => @event.id, :registration => {}
       Registration.last.user.should == @user
     end
+    
+    describe "with guests" do
+      before do
+        @event.update_attribute(:guests_per_user, 1)
+      end
+      
+      it "should save a new registration for each guest" do
+        post :create, :event_id => @event.id, :registration => {}, :guests => { :guest_name_0 => "Guesty", :guest_email_0 => "guesty@gmail.com" }
+        
+        guest_registration = Registration.where(:user_id => nil).first
+        guest_registration.guest_name.should == "Guesty"
+        guest_registration.guest_email.should == "guesty@gmail.com"
+      end
+    end
 
   end
 

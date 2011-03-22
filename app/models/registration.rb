@@ -3,6 +3,8 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
 
+  belongs_to :inviter, :class_name => 'User', :foreign_key => :inviter_id
+
   has_many :answers
   accepts_nested_attributes_for :answers
 
@@ -40,7 +42,7 @@ class Registration < ActiveRecord::Base
   end
 
   def update_event_active_registrations_count
-    event.active_registrations_count = Registration.active.count
+    event.active_registrations_count = event.registrations.active.count
     event.save
   end
 

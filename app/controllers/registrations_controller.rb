@@ -46,8 +46,21 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(params[:registration])
     @registration.user = current_user
     @registration.event = @event
+    
+    guest_registrations = []
+    if params[:guests]
+      (params[:guests].size / 2).times do |n| # lol
+        next unless params[:guests]["guest_name_#{n}"].present? && params[:guests]["guest_name_#{n}"].present?
+        
+        guest_registration = Registration.new( :event => @event, :inviter_id => current_user.id )
+        guest_registration.guest_name = params[:guests]["guest_name_#{n}"]
+        guest_registration.guest_email = params[:guests]["guest_email_#{n}"]
+        guest_registrations << guest_registration
+      end
+    end
 
-    if @registration.save
+    if @registration.valid? && guest_registrations.all? { |g| g.valid? }
+      @registration.save and guest_registrations.each { |g| g.save }
       if !@registration.waitlisted?
         notice = "Success! You have registered for this event."
       else

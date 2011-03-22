@@ -1,25 +1,38 @@
 = semantic_form_for([@event, @registration]) do |f|
+
   -if @registration.errors.any?
     #error_explanation
       %h2= "#{pluralize(@registration.errors.count, "error")} prohibited this registration from being saved:"
       %ul
         - @registration.errors.full_messages.each do |msg|
           %li= msg
-  %p
-    %h2 Questions
-    %p
-      Please complete these questions so you may be registered.
+    
+  - if @event.guests_per_user > 0
+    %h2 Guests
+    %p You may bring up to #{pluralize @event.guests_per_user, 'guest'} to this event.
+    - @event.guests_per_user.times do |n|
+      = label_tag "guests[guest_name_#{n}]", "Guest Name"
+      = text_field_tag "guests[guest_name_#{n}]"
+      = label_tag "guests[guest_name_#{n}]", "Email Address"
+      = text_field_tag "guests[guest_email_#{n}]"
+      %br
 
-      - Question.where({:event_id => @event.id}).each do |question|
-        = question.question_text 
-        %br
-        = f.fields_for :answers, Answer.new do |g|
-          - if question.form_type == "text"
-            = g.input :answer_text, :label => false
-          - else
-            = g.input :answer_text, :as => question.form_type, :collection => question.options, :label => false
-          = g.hidden_field :question_id, :value => question.id
+  - if @event.questions.size > 0
+    %p
+      %h2 Questions
+      %p
+        Please complete these questions so you may be registered.
+
+        - Question.where({:event_id => @event.id}).each do |question|
+          = question.question_text 
           %br
+          = f.fields_for :answers, Answer.new do |g|
+            - if question.form_type == "text"
+              = g.input :answer_text, :label => false
+            - else
+              = g.input :answer_text, :as => question.form_type, :collection => question.options, :label => false
+            = g.hidden_field :question_id, :value => question.id
+            %br
 
   .actions
     = f.submit 'Save'

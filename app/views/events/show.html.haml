@@ -21,11 +21,23 @@
   %p Attending:
   %ol
     - @event.registrations.attending.each do |reg|
-      %li= reg.user.name
+      - if reg.user
+        = reg.user.name
+        %br
+      - else
+        = reg.guest_name
+        (guest of #{reg.inviter.name})
+        %br
   %p Waitlisted:
   %ol
     - @event.registrations.waitlisted.each do |reg|
-      %li= reg.user.name
+      - if reg.user
+        = reg.user.name
+        %br
+      - else
+        = reg.guest_name
+        (guest of #{reg.inviter.name})
+        %br
 
 - if @current_user
   %p
@@ -40,5 +52,4 @@
       = link_to 'Register', new_event_registration_path(@event)
 
 = link_to 'Edit', edit_event_path(@event)
-\|
 = link_to 'Back', events_path

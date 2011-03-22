@@ -12,7 +12,7 @@
     #container
       #header
         #logo
-          = link_to 'Railsbridge Events!', root_url
+          = link_to 'Railsbridge Events', root_url
         #login
           - if user_signed_in?
             Signed in as
@@ -25,8 +25,8 @@
             = link_to 'Sign up', new_user_registration_path
 
         %ul.navigation
-          %li= link_to 'Locations', locations_path
           %li= link_to 'Events', events_path
+          %li= link_to 'Locations', locations_path
           %li Search
           %li Search
           %li Search

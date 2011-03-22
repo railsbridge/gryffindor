@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322041543) do
+ActiveRecord::Schema.define(:version => 20110322045950) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -49,12 +49,15 @@ ActiveRecord::Schema.define(:version => 20110322041543) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.integer  "user_id",      :null => false
+    t.integer  "user_id"
     t.integer  "event_id",     :null => false
     t.boolean  "waitlisted"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "withdrawn_at"
+    t.integer  "inviter_id"
+    t.string   "guest_name"
+    t.string   "guest_email"
   end
 
   add_index "registrations", ["event_id"], :name => "index_registrations_on_event_id"
@@ -90,7 +93,6 @@ ActiveRecord::Schema.define(:version => 20110322041543) do
     t.boolean  "female_identification"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "inviter_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
