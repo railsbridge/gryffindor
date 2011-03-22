@@ -26,6 +26,9 @@
   .field
     = f.label :capacity
     = f.text_field :capacity
+  .field
+    = f.label :guests_per_user
+    = f.select :guests_per_user, [0, 1, 2]
 
   %h2
     Questions
