@@ -49,8 +49,8 @@ class RegistrationsController < ApplicationController
     
     guest_registrations = []
     if params[:guests]
-      (params[:guests].size / 2).times do |n| # lol
-        next unless params[:guests]["guest_name_#{n}"].present? && params[:guests]["guest_name_#{n}"].present?
+      [(params[:guests].size / 2), @event.guests_per_user].max.times do |n|   # in case someone sneaky tries to pass in too many pairs
+        next unless params[:guests]["guest_name_#{n}"].present? && params[:guests]["guest_email_#{n}"].present?
         
         guest_registration = Registration.new( :event => @event, :inviter_id => current_user.id )
         guest_registration.guest_name = params[:guests]["guest_name_#{n}"]
