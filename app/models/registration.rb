@@ -14,7 +14,6 @@ class Registration < ActiveRecord::Base
   scope :waitlisted, :conditions => ["withdrawn_at IS NULL AND waitlisted = ?", true]
 
   validate :validate_uniqueness_of_active_registration
-  validate :validate_completeness_of_questions
 
   before_create :sets_waitlisted
   after_save :update_event_active_registrations_count
@@ -44,10 +43,5 @@ class Registration < ActiveRecord::Base
   def update_event_active_registrations_count
     event.active_registrations_count = event.registrations.active.count
     event.save
-  end
-
-  def validate_completeness_of_questions
-    complete = event.questions.collect.all? { |q| !q.answers.empty? }
-    errors.add(:base, "registration has incomplete answers") if !complete && !event.questions.empty?
   end
 end
